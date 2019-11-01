@@ -1,0 +1,22 @@
+{
+  "name": "doki-reactapp-cli",
+  "version": "1.0.0",
+  "description": "自定义react-cli",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pub": "npm run build && npm publish"
+  },
+  "bin": {
+    "doki-cli": "./bin/script-doki.js"
+  },
+  "author": "doki <gu1920948999@163.com>",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "commander": "^3.0.2",
+    "download-git-repo": "^3.0.2",
+    "inquirer": "^7.0.0",
+    "ora": "^4.0.2"
+  }
+}
