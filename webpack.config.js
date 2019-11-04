@@ -10,6 +10,12 @@ module.exports = {
           loader: 'babel-loader'
         }
       },
+      // {
+      //   test: /\.tsx?$/,
+      //   use: {
+      //     loader: 'ts-loader'
+      //   }
+      // },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
@@ -18,30 +24,20 @@ module.exports = {
         test: /\.scss$/,
         loaders: ['style-loader', 'css-loader', 'sass-loader'],
       },
-      // {
-      //   test: /\.css$/,
-      //   use: [
-      //     {
-      //       loader: 'style-loader'
-      //     },
-      //     {
-      //       loader: 'css-loader',
-      //       options: {
-      //         modules: true,
-      //         importLoaders: 1,
-      //         localIdentName: '[name]_[local]_[hash:base64]',
-      //         sourceMap: true,
-      //         minimize: true
-      //       }
-      //     }
-      //   ]
-      // }
-    ]
+    ],
+  },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ]
   },
   plugins: [
     new HtmlWebPackPlugin({
       template: './index.html',
       filename: './index.html'
     })
-  ]
+  ],
+  devServer: {
+    compress: true,
+    port: 8001, // 启动端口为 3001 的服务
+    open: true // 自动打开浏览器
+  },
 };

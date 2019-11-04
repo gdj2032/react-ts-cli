@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
+import { HomePage } from './pages'
 
 const App = () => {
-  return <div className="app">12131331</div>;
+  return <HomePage/>;
 };
 
 ReactDOM.render(<App />, document.getElementById('root'));
