@@ -1,5 +1,4 @@
 {
-  "compileOnSave": true,
   "compilerOptions": {
     "lib": ["es6", "dom", "es2015"],
     "module": "ESNext",
@@ -15,11 +14,10 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@*": ["./src/*"]
     },
     "alwaysStrict": true,
     "skipLibCheck": true,
-    // "esModuleInterop": true,
   },
   "include": [
     "./src/*"

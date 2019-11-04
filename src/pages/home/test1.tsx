@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Test2 from './test2'
+import Test2 from './Test2'
 
-export class Test1 extends React.Component {
+class Test1 extends React.Component {
   render() {
     return (
       <div>

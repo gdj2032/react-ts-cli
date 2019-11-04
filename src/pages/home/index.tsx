@@ -1,15 +1,16 @@
 import * as React from 'react';
-import Test1 from './test1';
+import Test1 from './Test1';
+import './index.scss';
 
-export class index extends React.Component {
+class Home extends React.Component {
   render() {
     return (
-      <div>
-        home11
+      <div className="g-home">
+        <div className="home">home11</div>
         <Test1/>
       </div>
     )
   }
 }
 
-export default index
+export default Home

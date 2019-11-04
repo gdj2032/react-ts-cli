@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import { HomePage } from './pages'
+import { HomePage } from './pages';
+// import './style/variable.scss';
 
 const App = () => {
   return <HomePage/>;
