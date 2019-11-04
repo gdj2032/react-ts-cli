@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production"
+    "start": "webpack-dev-server --mode development --open config/webpack.config.js",
+    "build": "webpack --mode production config/webpack.config.js"
   },
   "author": "",
   "license": "ISC",
