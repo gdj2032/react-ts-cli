@@ -10,19 +10,27 @@ module.exports = {
           loader: 'babel-loader'
         }
       },
-      // {
-      //   test: /\.tsx?$/,
-      //   use: {
-      //     loader: 'ts-loader'
-      //   }
-      // },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          {
+            loader: require.resolve('style-loader')
+          },
+          {
+            loader: require.resolve('css-loader')
+          },
+          require.resolve('sass-loader'),
+          {
+            loader: require.resolve('sass-resources-loader'),
+            options: {
+                resources: './src/style/variable.scss'
+            }
+          }
+        ],
       },
     ],
   },
