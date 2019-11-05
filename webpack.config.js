@@ -1,22 +1,6 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-const resolveTsconfigPathsToAlias = (tsconfigPath = path.resolve(process.cwd(), './tsconfig.json'), context) => {
-  const { paths, baseUrl } = require(tsconfigPath).compilerOptions;
-  console.log(paths, baseUrl)
-  const aliases = {};
-  const pathContext = context || baseUrl;
-
-  Object.keys(paths).forEach((item) => {
-    const key = item.replace('@/', '');
-    const value = path.resolve(pathContext, paths[item][0].replace('@/', ''));
-
-    aliases[key] = value;
-  });
-
-  return aliases;
-}
-
 module.exports = {
   module: {
     rules: [
@@ -54,6 +38,9 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
     // alias: resolveTsconfigPathsToAlias(),
+    alias: {
+      '@': `${__dirname}/src/`,
+    }
   },
   plugins: [
     new HtmlWebPackPlugin({
