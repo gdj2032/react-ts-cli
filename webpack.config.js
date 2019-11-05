@@ -37,7 +37,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
-    // alias: resolveTsconfigPathsToAlias(),
     alias: {
       '@': `${__dirname}/src/`,
     }

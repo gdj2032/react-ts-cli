@@ -34,7 +34,6 @@
   },
   "dependencies": {
     "node-sass": "^4.13.0",
-    "path": "^0.12.7",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-redux": "^6.0.0",
