@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+
+const chalk = require('chalk');
+
+const command = process.argv[2]
+
+switch (command) {
+    case 'dev': {
+        require('../scripts/dev')
+        break
+    }
+    case 'dll': {
+      require('../scripts/dll')
+      break
+    }
+    case 'build': {
+        require('../scripts/build')
+        break
+    }
+    case 'config': {
+        require('../scripts/config')
+        break
+    }
+    default: {
+        console.log(chalk.red(`Unknown script`));
+        break
+    }
+}

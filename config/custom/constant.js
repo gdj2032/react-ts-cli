@@ -1,0 +1,1 @@
+exports.CONFIG_FILENAME = '.doki.config.js';
