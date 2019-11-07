@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production"
-
+    "dev": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production",
+    "mock": "mocker ./mock"
   },
-  "author": "",
+  "author": "gdj",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.6.4",
