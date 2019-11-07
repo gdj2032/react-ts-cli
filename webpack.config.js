@@ -55,11 +55,11 @@ module.exports = {
     compress: true,
     port: 3001, // 启动端口为 3001 的服务
     open: true, // 自动打开浏览器
-    proxy: {// 代理配置
+    // proxy: {// 代理配置
       // '^/api/user/': { disabled: true, target: 'http://usercenter-gateway.yuna.svc.cluster.dev2:8800/' },
       // '^/api/application/': { target: 'http://usercenter-gateway.yuna.svc.cluster.dev2:8800/' },
-       '^/api/': 'http://config-gateway.yuna.svc.cluster.dev2:8700/api/', //全局代理，放到最后
-    },
-    mock: './mock/index.js', // 指定mock文件，mock开启以后，如果/mock/index.js中配置了相关请求的mock，则返回mock数据，否则请求真实数据
+      //  '^/api/': 'http://config-gateway.yuna.svc.cluster.dev2:8700/api/', //全局代理，放到最后
+    // },
+    // mock: './mock/index.js', // 指定mock文件，mock开启以后，如果/mock/index.js中配置了相关请求的mock，则返回mock数据，否则请求真实数据
   },
 };

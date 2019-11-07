@@ -9,6 +9,7 @@ const data = {
     "id": 1,
     "username": "admin",
   },
+  'POST /mock/user/logout': {},
 }
 
 module.exports = delay(data, 250);
