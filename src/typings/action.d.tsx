@@ -1,8 +1,7 @@
 interface IUserInfo {
-    configCenterUserId?: string;
+    id?: string;
     username?: string;
-    perm?: number[];
-    isLogin: boolean;
+    isLogin?: boolean;
 }
 
 interface IAppState {

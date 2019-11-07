@@ -2,17 +2,6 @@ interface Window {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
 }
 
-interface IRouteOption {
-    name: string;
-    path?: string;
-    exact?: boolean;
-    redirect?: string;
-    title?: string;
-    children?: IRouteOption[];
-    excludeAuth?: boolean; // 不进行校验登录
-    permissions?: number[];
-}
-
 interface IRequestParams {
     [key: string]: any;
 }

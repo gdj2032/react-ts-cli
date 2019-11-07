@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HomePage } from './pages';
+import Root from './framework/routes';
 import './style/variable.scss';
 
 const App = () => {
-  return <HomePage/>;
+  return <Root/>;
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Root />, document.getElementById('root'));
