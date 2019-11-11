@@ -1,4 +1,4 @@
-export const mockSwitch = false; // mock开关
+export const mockSwitch = true; // mock开关
 const isProduction = process.env.NODE_ENV !== 'development';
 const Credentials = 'include'; // include 跨域使用 、 same-origin 同源使用
 

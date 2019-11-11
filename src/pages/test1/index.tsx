@@ -2,6 +2,11 @@ export const RoutePath = '/home/test1';
 import React, { Component } from 'react'
 
 export class Test1 extends Component {
+
+  componentDidMount() {
+    console.log(this.props)
+  }
+
   render() {
     return (
       <div>

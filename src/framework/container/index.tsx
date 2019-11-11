@@ -1,14 +1,22 @@
 import * as React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Switch } from 'react-router-dom';
 import './index.scss';
-import Home from '@/pages/home';
+import routeList from '../routes/routeList';
 
-class ContainerPage extends React.PureComponent {
+interface Props {
+  routeConfig?: any;
+}
+
+class ContainerPage extends React.Component<Props> {
+
 	render() {
+		const childRouteConfig = this.props.routeConfig.children || [];
 		return (
 			<div>
         <h1>ContainerPage</h1>
-        <Home/>
+        <Switch>
+          {routeList(childRouteConfig)}
+        </Switch>
       </div>
 		);
 	}
