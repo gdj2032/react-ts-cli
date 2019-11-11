@@ -1,0 +1,14 @@
+.g-container {
+  width: 100vw;
+  min-width: 1300px;
+  min-height: 100vh;
+  .p-content {
+    .p-route-page {
+      position: absolute;
+      top: $header-height;
+      left: $left-menu-width;
+      min-width: 1100px;
+      height: 100vh;
+    }
+  }
+}
