@@ -4,8 +4,8 @@ import types from '@/action/types';
 
 const typesUser: any = types.user;
 
-const user = combineReducers({
-  account: createReducer({
+const appReducer = combineReducers({
+  user: createReducer({
     [typesUser]: (state, payload) => ({ ...state, ...payload.value }),
   }, {
     isLogin: false,
@@ -14,4 +14,4 @@ const user = combineReducers({
   }),
 });
 
-export default user;
+export default appReducer;

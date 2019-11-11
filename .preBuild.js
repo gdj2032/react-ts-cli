@@ -66,27 +66,27 @@ function parseReduxExports() {
     if (!fs.statSync(folderName).isDirectory()) {
       return;
     }
-    const reduxFiles = fs.readdirSync(folderName);
-    let hasAction = false;
-    reduxFiles.forEach(file => {
-      const regex = /^action\.(ts|tsx|js|jsx)$/;
-      if (file.match(regex)) {
-        hasAction = true;
-      }
-    })
-    if (!hasAction) {
-      console.error(chalk.red(`Redux ${folderName} 文件夹下找不到 action 文件`));
-      return;
-    };
-    reducers.push(name);
+    // const reduxFiles = fs.readdirSync(folderName);
+  //   let hasAction = false;
+  //   reduxFiles.forEach(file => {
+  //     const regex = /^action\.(ts|tsx|js|jsx)$/;
+  //     if (file.match(regex)) {
+  //       hasAction = true;
+  //     }
+  //   })
+  //   if (!hasAction) {
+  //     console.error(chalk.red(`Redux ${folderName} 文件夹下找不到 action 文件`));
+  //     return;
+  //   };
+  //   reducers.push(name);
   });
   fileContent += `import { store, persistor } from './store';${os.EOL}`;
-  reducers.forEach(name => {
-    fileContent += `import * as ${name}Action from './${name}/action';${os.EOL}`;
-  })
-  reducers.forEach(name => {
-    fileContent += `export { ${name}Action };${os.EOL}`;
-  })
+  // reducers.forEach(name => {
+  //   fileContent += `import * as ${name}Action from './${name}/action';${os.EOL}`;
+  // })
+  // reducers.forEach(name => {
+  //   fileContent += `export { ${name}Action };${os.EOL}`;
+  // })
   fileContent += `export { persistor };${os.EOL}`;
   fileContent += `export default store;${os.EOL}`;
 
@@ -182,7 +182,6 @@ function parsePagePath() {
       findCodeFile(name, allFiles);
     }
   });
-
   //生成结构[{name: string; file: string; routes: string, pathes}];, pathes 最后一个是组件名字
   const allRoutes = [];
   allFiles.forEach(f => {

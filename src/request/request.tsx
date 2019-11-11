@@ -2,7 +2,8 @@ import { API_HOST, Credentials } from '@/constants';
 import to from 'await-to-js';
 import { genQuery, abortablePromise } from './helper';
 // import { userAction } from '@/actions';
-// import { store } from '@/configureStore';
+import { store } from '@/reduxes/store';
+import { updateUser } from '@/action/setting';
 
 const methods = ['GET', 'POST', 'PUT', 'DELETE'];
 
@@ -11,7 +12,11 @@ function checkStatus(response: any, error: (error: any) => void = () => { }) {
         case 200:
             return response.text().then((text: string) => Promise.resolve(text ? JSON.parse(text) : {}));
         case 401:
-            // store.dispatch(userAction.clearUserInfo())
+            store.dispatch(updateUser({
+              isLogin: false,
+              id: 0,
+              username: null,
+            }))
             window.location.hash = '/login';
         default:
             return (response.json()).then((json: any) => {

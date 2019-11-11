@@ -1,6 +1,16 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const WebpackPreBuildPlugin = require('pre-build-webpack');
+const webpack = require('webpack');
+
+let onPrebuild
+try {
+  onPrebuild = require('./.preBuild.js'); }
+catch (e) {
+  console.error('无法加载编译前置处理文件： .preBuild.js');
+  console.error(e);
+  throw e;
+}
 
 module.exports = {
   module: {
@@ -35,6 +45,14 @@ module.exports = {
         ],
       },
       {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
+      {
         test: /\.(eot|woff2?|ttf|svg)$/,
         exclude: path.resolve(__dirname, "./src/images/svg"), //不处理指定svg的文件(所有使用的svg文件放到该文件夹下)
         use: [
@@ -66,18 +84,20 @@ module.exports = {
     }
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
       template: './index.html',
       filename: './index.html'
     }),
     new WebpackPreBuildPlugin(function (stats) {
-      console.log('WebpackPreBuildPlugin')
+      onPrebuild && onPrebuild(stats)
     }),
   ],
   devServer: {
     compress: true,
     port: 3001, // 启动端口为 3001 的服务
     open: true, // 自动打开浏览器
+    hot: true,
     // proxy: {// 代理配置
       // '^/api/user/': { disabled: true, target: 'http://usercenter-gateway.yuna.svc.cluster.dev2:8800/' },
       // '^/api/application/': { target: 'http://usercenter-gateway.yuna.svc.cluster.dev2:8800/' },

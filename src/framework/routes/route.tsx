@@ -1,28 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
-import Login from '@/framework/login';
-import Container from '@/framework/container';
+import { HashRouter, Switch } from 'react-router-dom';
+import routeList from './routeList';
+import { pageRoute, loginRoute } from './routes';
 
 class RootRouter extends React.Component<IUserInfo> {
   render() {
     const isLogin = this.props.isLogin;
     console.log(isLogin)
-    if (isLogin) {
-      return (
-        <HashRouter>
-          <Switch>
-            <Route path="/app" component={Container} />
-            <Redirect to="/app/home" />
-          </Switch>
-        </HashRouter>
-      );
-    }
     return (
       <HashRouter>
         <Switch>
-          <Route path="/login" component={Login} />
-          <Redirect to="/login" />
+          {routeList(isLogin ? pageRoute : loginRoute)}
         </Switch>
       </HashRouter>
     );

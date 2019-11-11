@@ -1,4 +1,4 @@
 interface ILoginParams {
-    name: string;
-    pwd: string;
+    username: string;
+    password: string;
 }

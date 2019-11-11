@@ -1,7 +1,7 @@
 import { createAction } from 'redux-act';
 
 const types = {
-  user: createAction('user'),
+  user: createAction('USER'),
 }
 
 

@@ -1,12 +1,4 @@
-import { combineReducers } from 'redux';
-import user from './user';
-
-const appReducer = combineReducers({
-  ...user,
-});
-
-const rootReducer = (state, action) => {
-  return appReducer({...state}, {...action});
-};
-
-export default rootReducer;
+// 此文件为编译时自动生成的代码，请勿更改, 改了也没有用
+import { store, persistor } from './store';
+export { persistor };
+export default store;
