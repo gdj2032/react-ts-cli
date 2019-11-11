@@ -7,7 +7,6 @@ import { pageRoute, loginRoute } from './routes';
 class RootRouter extends React.Component<IUserInfo> {
   render() {
     const isLogin = this.props.isLogin;
-    console.log(isLogin)
     return (
       <HashRouter>
         <Switch>

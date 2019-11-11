@@ -23,7 +23,7 @@ const RouterComponent = withRouter(RouteWrap);
 const routeList = (routeConfig: IRouteOption[]) => {
     return routeConfig.map((route: IRouteOption) => {
         if (route.redirect) {
-            return <Redirect from={route.path} to={route.redirect} exact={route.exact} key={route.path} />;
+            return <Redirect from={route.path} to={route.redirect} exact={route.exact} key={route.redirect} />;
         } else {
             const renderComponent = () => <RouterComponent routeConfig={route} />;
             return <Route path={route.path} exact={route.exact} render={renderComponent} key={route.path} />;
