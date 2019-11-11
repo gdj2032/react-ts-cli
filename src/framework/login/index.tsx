@@ -16,22 +16,25 @@ export class Login extends Component<Props> {
   userRefs: any;
   pwdRefs: any;
 
-  onClick = async () => {
+  handleSubmit = async () => {
     const username = this.userRefs.state.value;
     const password = this.pwdRefs.state.value;
-    console.log(username, password)
     const [err, data] = await userService.login({username, password})
-    console.log(data, this.props)
-    store.dispatch(updateUser({...data, isLogin: true}))
-    this.props.history.push(PathConfig.home)
+    if(!err) {
+      store.dispatch(updateUser({...data, isLogin: true}))
+      this.props.history.push(PathConfig.home)
+    }
   }
   render() {
     return (
-      <div>
-        Login111
-        <Input width={200} ref={c => this.userRefs = c} />
-        <Input width={200} ref={c => this.pwdRefs = c} />
-        <Button onClick={this.onClick}>确认</Button>
+      <div className="g-login">
+        <div className="login-form">
+          <Input ref={c => this.userRefs = c} />
+          <Input ref={c => this.pwdRefs = c} />
+        </div>
+        <div className="login-btn">
+          <Button type="primary" onClick={this.handleSubmit}>登录</Button>
+        </div>
       </div>
     )
   }
