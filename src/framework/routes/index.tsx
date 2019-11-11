@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { store, persistor } from '@/reduxes/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import WrapRouter from './route';
+import { PathConfig } from './routes';
 
 const Root = () => (
   <Provider store={store}>
@@ -13,3 +14,5 @@ const Root = () => (
 );
 
 export default Root;
+
+export { PathConfig }
