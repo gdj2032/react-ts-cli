@@ -22,6 +22,26 @@
     类型： const varible : xxxRedux.TypeXXX = ...; //类型
     xxxRedux.xxxAction....(); // Action
     ```
+#### pages `存放所有的用户页面`
+
++ 多页面组结构如下 `比如列表，详情，编辑等都在一个组里面, 根目录下不要有index.tsx`
+  > + 页面组目录/ 
+  >   + components/ `该页面组下公共组件目录`
+  >   + 子页面目录
+  >     + index.tsx `子页面代码`  
+  >     + style/ | index.scss ` 如果有多个样式表样式表需要放到style目录下，否则使用index.scss, 切忌把一堆scss和tsx写到同一个目录！`
+  >     + 其他页面.tsx `某一个页面自己单独的组件无需创建component目录` 
+
++ 单页面组下面无需再细分子页面目录，直接使用 `多页面组中子页面目录结构即可`
+  > + 页面目录/
+  >   + index.tsx `子页面代码`  
+  >   + style/ | index.scss ` 如果有多个样式表样式表需要放到style目录下，否则使用index.scss, 切忌把一堆scss和tsx写到同一个目录！`
+  >   + 其他页面.tsx `某一个页面自己单独的组件无需创建component目录` 
+
++ 新增的页面需要修改 /pages/index.tsx中导出代码 （以后考虑自动生成导出代码）
+  + 导入页面组件
+  + `pagesPathes` 中定义页面路径变量，此变量可以通过 `import { PathConfig} from '@/constants'`来获取
+  + `pagesRoutes` 设置页面路由
 
 + ###### Service
   + 服务：服务已经按照分类导出
