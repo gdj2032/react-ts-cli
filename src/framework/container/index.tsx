@@ -7,6 +7,7 @@ import LeftMenu from '../leftMenu';
 
 interface Props {
   routeConfig?: any;
+  history?: any;
 }
 
 class ContainerPage extends React.Component<Props> {
@@ -15,7 +16,7 @@ class ContainerPage extends React.Component<Props> {
 		const childRouteConfig = this.props.routeConfig.children || [];
 		return (
 			<div className="g-container">
-        <Header/>
+        <Header history={this.props.history}/>
         <div className="p-content">
           <LeftMenu/>
           <div className="p-route-page">

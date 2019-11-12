@@ -1,5 +1,33 @@
 .g-header {
   width: 100vw;
   height: $header-height;
-  border: 1px solid $blue;
+  background-color: rgb(255, 249, 221);
+  .h-logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    height: 60px;
+    .h-img {
+      width: 60px;
+      height: 60px;
+    }
+    .h-title {
+      font-size: 24px;
+      font-weight: 400;
+      margin-left: 10px;
+    }
+  }
+  .h-userInfo {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    height: 100%;
+    .h-username {
+      height: $header-height;
+      line-height: $header-height;
+    }
+    .h-logout {
+      margin-left: 10px;
+    }
+  }
 }
