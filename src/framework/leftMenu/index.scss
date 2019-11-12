@@ -4,5 +4,8 @@
   left: 0;
   width: $left-menu-width;
   height: 100vh;
-  border: 1px solid;
+  background-color: rgb(188, 238, 245);
+  ul {
+    background-color: rgb(188, 238, 245);
+  }
 }

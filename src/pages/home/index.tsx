@@ -15,7 +15,7 @@ interface Props {
 class Home extends React.Component<Props> {
   onGoto = () => {
     console.log(this.props)
-    this.props.history.push(PathConfig.test1)
+    this.props.history.push(PathConfig.homeDetail)
   }
   onLogout = () => {
     store.dispatch(updateUser(userInit))

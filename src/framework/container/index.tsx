@@ -18,7 +18,7 @@ class ContainerPage extends React.Component<Props> {
 			<div className="g-container">
         <Header history={this.props.history}/>
         <div className="p-content">
-          <LeftMenu/>
+          <LeftMenu routes={childRouteConfig} history={this.props.history}/>
           <div className="p-route-page">
             <Switch>
               {routeList(childRouteConfig)}
