@@ -38,7 +38,7 @@ export class LeftMenu extends Component<Props> {
 
   generateSvgIcon = (icon: string) => {
     if (!icon) { return '' }
-    return <SvgIcon name={icon} size={20} />;
+    return <SvgIcon name={icon} size={16} />;
   }
 
   generateMenuItem = (menuItemConfig: IRouteOption) => {

@@ -14,6 +14,11 @@ const menu: IRouteOption[] = [
       path: PathConfig.test1,
       icon: 'succeed',
   },
+  {
+      title: 'test2',
+      path: PathConfig.test2,
+      icon: 'succeed',
+  },
 ];
   return menu;
 }

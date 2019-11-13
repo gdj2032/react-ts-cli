@@ -25,6 +25,7 @@ export class Login extends Component<Props> {
 	handleSubmit = () => {
 		this.loginform.validateFields( async (err: any, value: ILoginParams) => {
 			if (!err) {
+				console.log(value)
 				const [err, data] = await userService.login(value)
         if(!err) {
           store.dispatch(updateUser({...data, isLogin: true}))

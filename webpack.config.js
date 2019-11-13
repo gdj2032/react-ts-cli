@@ -95,7 +95,7 @@ module.exports = {
   ],
   devServer: {
     compress: true,
-    port: 3001, // 启动端口为 3001 的服务
+    port: 9001, // 启动端口为 3001 的服务
     open: true, // 自动打开浏览器
     hot: true,
     // proxy: {// 代理配置
