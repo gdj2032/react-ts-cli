@@ -24,10 +24,6 @@ class Home extends React.Component<Props> {
     return (
       <div className="g-home">
         <div className="home">Home</div>
-        <SvgIcon name="succeed" color="red" size={50} />
-        <div onClick={this.onGoto}>goto</div>
-        <DatePicker/>
-        <div onClick={this.onLogout}>logout</div>
       </div>
     )
   }

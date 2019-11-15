@@ -1,0 +1,22 @@
+.g-header {
+  width: 100vw;
+  height: $header-height;
+  text-align: center;
+  .h-top {
+    height: 30px;
+    line-height: 30px;
+    background-color: $background-gray;
+    .h-top-login {
+      color: $gray;
+    }
+    .h-top-login:hover {
+      color: $red;
+    }
+    .h-top-register {
+      color: #e00;
+    }
+  }
+  .h-text {
+    margin-right: 10px;
+  }
+}
