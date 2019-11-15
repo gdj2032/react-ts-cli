@@ -10,7 +10,7 @@ class RootRouter extends React.Component<IUserInfo> {
     return (
       <HashRouter>
         <Switch>
-          {routeList(isLogin ? pageRoute : loginRoute)}
+          {routeList(pageRoute)}
         </Switch>
       </HashRouter>
     );

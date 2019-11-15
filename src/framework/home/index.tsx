@@ -1,4 +1,3 @@
-export const RoutePath = '/home';
 import * as React from 'react';
 import './index.scss';
 import { DatePicker } from 'antd';

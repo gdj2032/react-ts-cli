@@ -1,7 +1,7 @@
-export const RoutePath = '/test1';
+export const RoutePath = '/test2';
 import React, { Component } from 'react'
 
-export class Test1 extends Component {
+export class Test2 extends Component {
 
   componentDidMount() {
     console.log(this.props)
@@ -10,10 +10,10 @@ export class Test1 extends Component {
   render() {
     return (
       <div>
-        Test1222
+        Test22222
       </div>
     )
   }
 }
 
-export default Test1
+export default Test2
