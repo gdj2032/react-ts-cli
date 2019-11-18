@@ -3,8 +3,8 @@
   height: $header-height;
   text-align: center;
   .h-top {
-    height: 30px;
-    line-height: 30px;
+    height: 24px;
+    line-height: 24px;
     background-color: $background-gray;
     .h-top-login {
       color: $gray;
@@ -13,10 +13,27 @@
       color: $red;
     }
     .h-top-register {
-      color: #e00;
+      color: $red;
     }
   }
   .h-text {
     margin-right: 10px;
+  }
+  .h-search-icon {
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    margin-top: 10px;
+    .h-logo {
+      width: 64px;
+      height: 64px;
+      margin-right: 20px;
+    }
+    .h-search {
+      width: 500px;
+    }
+    .ant-input-group-wrapper {
+      vertical-align: middle;
+    }
   }
 }

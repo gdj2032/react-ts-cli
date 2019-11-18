@@ -6,6 +6,7 @@ import Home from '../home';
 
 export const PathConfig = {
     login: '/login',
+    home: '/',
     ...UserPagePath,
 };
 

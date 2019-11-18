@@ -1,8 +1,31 @@
 import React, { Component } from 'react';
 import './index.scss';
 import store from '@/reduxes';
+import { LOGO, userInit } from '@/constants';
+import Search from 'antd/lib/input/Search';
+import { updateUser } from '@/action/setting';
+import { PathConfig } from '../routes';
 
-class Header extends Component {
+interface Props {
+  history?: any;
+}
+
+class Header extends Component<Props> {
+
+  onLogout = () => {
+    store.dispatch(updateUser(userInit))
+  }
+
+  onLogin = () => {
+    this.props.history.push(PathConfig.login)
+  }
+
+  onRegister = () => {}
+
+  onHome = () => {
+    this.props.history.push(PathConfig.home)
+  }
+
   render() {
     const user = store.getState().user
     return (
@@ -12,16 +35,21 @@ class Header extends Component {
             user.isLogin ?
             <span>
               <span className="h-text h-top-username">{user.username}</span>
-              <a className="h-text h-top-logout">登出</a>
+              <a className="h-text h-top-logout" onClick={this.onLogout}>登出</a>
             </span>
             :
             <span>
-              <a className="h-text h-top-login">你好 请登录</a>
-              <a className="h-text h-top-register">免费注册</a>
+              <a className="h-text h-top-login" onClick={this.onLogin}>登录</a>
+              <a className="h-text h-top-register" onClick={this.onRegister}>注册</a>
             </span>
           }
         </div>
-        Header
+        <div className="h-search-icon">
+          <a onClick={this.onHome}>
+            <img className="h-logo" src={LOGO} />
+          </a>
+          <Search placeholder="请输入搜索内容" className="h-search" onSearch={value => console.log(value)} enterButton size={'large'} />
+        </div>
       </div>
     )
   }
