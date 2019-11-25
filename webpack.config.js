@@ -104,10 +104,10 @@ module.exports = {
         target: 'http://localhost:8080',
         changeOrigin: true,
       },
-      // '/api/*': {
-      //   target: '',
-      //   changeOrigin: true,
-      // },
+      '/mock/*': {
+        target: 'http://localhost/3721',
+        changeOrigin: true,
+      },
     },
   },
 };
