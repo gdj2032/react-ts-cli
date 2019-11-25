@@ -15,9 +15,14 @@ const menu: IRouteOption[] = [
       icon: 'succeed',
       children: [
         {
+          title: 'CSS3 主页',
+          path: PathConfig.css3,
+          icon: '',
+        },
+        {
           title: '动画animate',
           path: PathConfig.css3Animate,
-          icon: 'succeed',
+          icon: '',
         },
       ]
   },
