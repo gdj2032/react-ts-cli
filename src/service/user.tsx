@@ -12,9 +12,10 @@ const login = async (data: ILoginParams) => {
   })
 }
 
-const logout = async () => {
+const logout = async (id: any) => {
   return request.post({
     path: '/user/logout',
+    data: {id}
   })
 }
 

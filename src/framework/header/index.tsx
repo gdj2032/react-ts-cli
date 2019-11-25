@@ -1,10 +1,12 @@
-import React, { Component } from 'react'
-
-import './index.scss';
+import React, { Component } from 'react';
 import { LOGO, APPNAME, userInit } from '@/constants';
 import store from '@/reduxes';
 import { updateUser } from '@/action/setting';
 import { PathConfig } from '../routes';
+import { userService } from '@/service';
+import { message } from 'antd';
+
+import './index.scss';
 
 interface Props {
   history: any;
@@ -12,9 +14,14 @@ interface Props {
 
 export class Header extends Component<Props> {
 
-  onLogout = () => {
-    store.dispatch(updateUser(userInit))
-    this.props.history.push(PathConfig.login)
+  onLogout = async () => {
+    const [err, data] = await userService.logout(store.getState().user.id)
+    if(!err) {
+      store.dispatch(updateUser(userInit))
+      this.props.history.push(PathConfig.login)
+    } else {
+      message.error(err.message)
+    }
   }
 
   render() {

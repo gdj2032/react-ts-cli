@@ -1,13 +1,13 @@
-export const mockSwitch = true; // mock开关
+export const mockSwitch = 0; // mock开关
 const isProduction = process.env.NODE_ENV !== 'development';
 const Credentials = 'include'; // include 跨域使用 、 same-origin 同源使用
 
-let API_HOST = 'http://192.168.1.179:9001'
+let API_HOST = ''
 
 if (isProduction) {
   API_HOST = ''; //
 } else {
-  API_HOST += !mockSwitch ? '' : '/mock';
+  API_HOST = !mockSwitch ? '/api' : '/mock';
 }
 
 export {
