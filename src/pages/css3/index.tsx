@@ -1,7 +1,7 @@
-export const RoutePath = '/test1';
+export const RoutePath = '/css3';
 import React, { Component } from 'react'
 
-export class Test1 extends Component {
+export class Css3 extends Component {
 
   componentDidMount() {
     console.log(this.props)
@@ -10,10 +10,10 @@ export class Test1 extends Component {
   render() {
     return (
       <div>
-        Test1222
+        Css3
       </div>
     )
   }
 }
 
-export default Test1
+export default Css3

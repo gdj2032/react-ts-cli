@@ -1,7 +1,8 @@
 .g-header {
   width: 100vw;
   height: $header-height;
-  background-color: rgb(255, 249, 221);
+  // background-color: rgb(255, 249, 221);
+  border-bottom: 1px solid #ccc;
   .h-logo {
     position: absolute;
     top: 10px;

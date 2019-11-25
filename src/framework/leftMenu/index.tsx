@@ -25,10 +25,10 @@ export class LeftMenu extends Component<Props> {
   }
 
   generateSubMenu = (subMenuConfig: IRouteOption) => {
-    const { children, path, icon } = subMenuConfig;
+    const { children, path, icon, title } = subMenuConfig;
     return (
       <Menu.SubMenu
-    title={<span>{this.generateSvgIcon(icon)}{path}</span>}
+        title={<span>{this.generateSvgIcon(icon)}{title}</span>}
         key={path}
       >
         {this.generateMenu(children)}
@@ -42,12 +42,12 @@ export class LeftMenu extends Component<Props> {
   }
 
   generateMenuItem = (menuItemConfig: IRouteOption) => {
-    const { path, icon } = menuItemConfig;
+    const { path, icon, title } = menuItemConfig;
     return (
       <Menu.Item
         key={path}
       >
-        <span>{this.generateSvgIcon(icon)}{path}</span>
+        <span>{this.generateSvgIcon(icon)}{title}</span>
       </Menu.Item>
     );
   }

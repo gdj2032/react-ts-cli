@@ -10,13 +10,20 @@ const menu: IRouteOption[] = [
       icon: 'succeed',
   },
   {
-      title: 'test1',
-      path: PathConfig.test1,
+      title: 'CSS3',
+      path: PathConfig.css3,
       icon: 'succeed',
+      children: [
+        {
+          title: '动画animate',
+          path: PathConfig.css3Animate,
+          icon: 'succeed',
+        },
+      ]
   },
   {
-      title: 'test2',
-      path: PathConfig.test2,
+      title: 'RN',
+      path: PathConfig.reactnative,
       icon: 'succeed',
   },
 ];
