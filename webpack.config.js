@@ -104,6 +104,10 @@ module.exports = {
         target: 'http://192.168.1.179:3721',
         changeOrigin: true,
       },
+      '/api/*': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+      },
     },
   },
 };

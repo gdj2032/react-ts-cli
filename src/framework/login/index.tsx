@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TForm, Button } from '@tmind/yuna'
+import { TForm, Button, message } from '@tmind/yuna'
 import { userService } from '@/service';
 import { updateUser } from '@/action/setting';
 import store from '@/reduxes';
@@ -30,7 +30,9 @@ export class Login extends Component<Props> {
         if(!err) {
           store.dispatch(updateUser({...data, isLogin: true}))
           this.props.history.push(PathConfig.home)
-        }
+        } else {
+					message.error(err.message)
+				}
 			}
 		});
 	}
