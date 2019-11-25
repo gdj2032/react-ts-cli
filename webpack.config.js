@@ -100,8 +100,8 @@ module.exports = {
     hot: true,
     host: '0.0.0.0',
     proxy: {// 代理配置
-      '/mock/*': {
-        target: 'http://192.168.1.179:3721',
+      '/api/*': {
+        target: 'http://localhost:8080',
         changeOrigin: true,
       },
       // '/api/*': {

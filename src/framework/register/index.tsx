@@ -12,9 +12,9 @@ interface Props{
   history?: any;
 }
 
-export class Login extends Component<Props> {
+export class Register extends Component<Props> {
 
-  loginform: any;
+  registerform: any;
 
   onInputKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void = (e) => {
 		if (e.which === 13) {
@@ -23,14 +23,14 @@ export class Login extends Component<Props> {
 		}
 	}
 	handleSubmit = () => {
-		this.loginform.validateFields( async (err: any, value: ILoginParams) => {
+		this.registerform.validateFields( async (err: any, value: any) => {
 			if (!err) {
 				console.log(value)
-				const [err, data] = await userService.login(value)
-        console.log("TCL: Login -> handleSubmit -> err, data", err, data)
-        if(data && data.code && data.code === 200 ) {
-          store.dispatch(updateUser({id: data.id, username: data.username, isLogin: true}))
-          this.props.history.push(PathConfig.home)
+				const [err, data] = await userService.register(value)
+        console.log("TCL: Register -> handleSubmit -> err, data", err, data)
+        if(!err) {
+					message.success('注册成功，请登录')
+          this.props.history.push(PathConfig.login)
         } else {
 					message.error(err.message)
 				}
@@ -60,23 +60,33 @@ export class Login extends Component<Props> {
 				props: {
 					onKeyDown: this.onInputKeyPress
 				}
-			}
+			},
+			// {
+			// 	id: 'rePassword',
+			// 	label: '重复密码',
+			// 	placeholder: '请输入密码',
+			// 	type: 'password',
+			// 	required: '请输入密码',
+			// 	props: {
+			// 		onKeyDown: this.onInputKeyPress
+			// 	}
+			// },
 		];
 
     return (
-      <div className="g-login">
-        <div className="login-content">
-          <div className="login-title"><h2>登录</h2></div>
-          <div className="login-form">
+      <div className="g-register">
+        <div className="register-content">
+          <div className="register-title"><h2>注册</h2></div>
+          <div className="register-form">
             <TForm
               hideRequiredMark
               formItems={formItems}
-              ref={c => this.loginform = c}
+              ref={c => this.registerform = c}
               itemLayout={{ labelCol: { span: 4 }, wrapperCol: { span: 20 } }}
             />
           </div>
-          <div className="login-btn">
-            <Button type="primary" onClick={this.handleSubmit}>登录</Button>
+          <div className="register-btn">
+            <Button type="primary" onClick={this.handleSubmit}>注册</Button>
           </div>
         </div>
       </div>
@@ -84,4 +94,4 @@ export class Login extends Component<Props> {
   }
 }
 
-export default Login
+export default Register

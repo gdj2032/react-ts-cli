@@ -5,6 +5,8 @@ import { LOGO, userInit } from '@/constants';
 import Search from 'antd/lib/input/Search';
 import { updateUser } from '@/action/setting';
 import { PathConfig } from '../routes';
+import { userService } from '@/service';
+import { message } from 'antd';
 
 interface Props {
   history?: any;
@@ -12,15 +14,24 @@ interface Props {
 
 class Header extends Component<Props> {
 
-  onLogout = () => {
-    store.dispatch(updateUser(userInit))
+  onLogout = async () => {
+    const [err, data] = await userService.logout(store.getState().user.id)
+    console.log("TCL: Login -> handleSubmit -> err, data", err, data)
+    if(data && data.code && data.code === 200 ) {
+      store.dispatch(updateUser(userInit))
+      message.success('登出成功')
+    } else {
+      message.error(err.message)
+    }
   }
 
   onLogin = () => {
     this.props.history.push(PathConfig.login)
   }
 
-  onRegister = () => {}
+  onRegister = () => {
+    this.props.history.push(PathConfig.register)
+  }
 
   onHome = () => {
     this.props.history.push(PathConfig.home)

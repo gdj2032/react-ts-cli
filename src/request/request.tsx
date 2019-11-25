@@ -13,19 +13,19 @@ function checkStatus(response: any, error: (error: any) => void = () => { }) {
             return response.text().then((text: string) => Promise.resolve(text ? JSON.parse(text) : {}));
         case 401:
             store.dispatch(updateUser({
-              isLogin: false,
-              id: 0,
-              username: null,
+                isLogin: false,
+                id: 0,
+                username: null,
             }))
             window.location.hash = '/login';
         default:
             return (response.json()).then((json: any) => {
-              if (json.message) {
-                error(json.message);
-              } else {
-                error(json);
-              }
-              return Promise.reject(json);
+                if (json.message) {
+                    error(json.message);
+                } else {
+                    error(json);
+                }
+                return Promise.reject(json);
             });
     }
 }
@@ -66,7 +66,7 @@ function fetchRequest(options: IRequestOptions) {
     }
 
     return abortablePromise(fetch(requestUrl, config))
-                .then(response => checkStatus(response));
+        .then(response => checkStatus(response));
 }
 
 const request = {
