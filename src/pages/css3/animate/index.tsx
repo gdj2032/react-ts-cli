@@ -4,11 +4,11 @@ import React, { Component } from 'react';
 class Animate extends Component {
   render() {
     return (
-      <div>
-        Animate
+      <div className="g-page">
+        <h1>Animate动画</h1>
       </div>
     )
   }
 }
 
-export default Animate
+export default Animate;

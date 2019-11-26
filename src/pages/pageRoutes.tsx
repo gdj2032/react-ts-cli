@@ -3,6 +3,7 @@ const pageRoutes = {
 	css3Animate: '/css3/animate',
 	css3: '/css3',
 	homeDetail: '/home/detail',
+	homeExif: '/home/exif',
 	home: '/home',
 	reactnative: '/reactnative',
 };

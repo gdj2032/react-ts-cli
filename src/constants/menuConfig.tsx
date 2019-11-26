@@ -5,9 +5,21 @@ const menuConfig = () => {
 
 const menu: IRouteOption[] = [
   {
-      title: 'home',
+      title: 'Home',
       path: PathConfig.home,
       icon: 'succeed',
+      children: [
+        {
+          title: 'home',
+          path: PathConfig.home,
+          icon: '',
+        },
+        {
+          title: 'EXIF',
+          path: PathConfig.homeExif,
+          icon: '',
+        },
+      ]
   },
   {
       title: 'CSS3',

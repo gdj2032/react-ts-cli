@@ -62,7 +62,6 @@ export class LeftMenu extends Component<Props> {
   render() {
     const { selectedKey } = this.state;
     const { routes } = this.props;
-    console.log(routes)
     return (
       <div className="g-left-menu">
         <Menu
