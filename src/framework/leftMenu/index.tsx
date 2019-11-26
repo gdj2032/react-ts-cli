@@ -12,7 +12,7 @@ interface Props {
 export class LeftMenu extends Component<Props> {
 
   state = {
-    selectedKey: ''
+    selectedKey: this.props.history.location.pathname
   }
 
   generateMenu = (config: IRouteOption[] = []) => {

@@ -1,0 +1,35 @@
+@keyframes test1 {
+  0%   {width: 200px;height: 200px;background-color: #e83e8c;}
+  25%  {width: 300px;height: 100px;background-color: #3eb2e8;}
+  50%  {width: 200px;height: 300px;background-color: #3ee87f;}
+  75%  {width: 500px;height: 100px;background-color: #bbe83e;}
+  100% {width: 500px;height: 200px;background-color: #7f3ee8;}
+}
+
+.g-animate {
+  margin-bottom: 50px;
+  overflow: auto;
+  .an-content {
+    margin: 10px 0;
+  }
+  .an-word {
+    color: #e83e8c;
+  }
+  h3 h5 {
+    margin: 20px 0;
+  }
+  .an-content-gray {
+    background-color: $gray;
+  }
+  .an-test {
+    height: 600px;
+    .an-test1 {
+      width: 200px;
+      height: 200px;
+      background-color: #e83e8c;
+    }
+    .an-test1:hover {
+      animation: test1 10s infinite ease forwards;
+    }
+  }
+}
