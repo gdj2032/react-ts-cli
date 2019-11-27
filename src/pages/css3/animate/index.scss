@@ -1,14 +1,17 @@
 @keyframes test1 {
-  0%   {width: 200px;height: 200px;background-color: #e83e8c;}
-  25%  {width: 300px;height: 100px;background-color: #3eb2e8;}
-  50%  {width: 200px;height: 300px;background-color: #3ee87f;}
-  75%  {width: 500px;height: 100px;background-color: #bbe83e;}
-  100% {width: 500px;height: 200px;background-color: #7f3ee8;}
+  0%   {width: 200px;height: 200px;background-color: #e83e8c; transform: rotate(0);}
+  25%  {width: 300px;height: 300px;background-color: #3eb2e8; transform: rotate(900deg);}
+  50%  {width: 100px;height: 100px;background-color: #3ee87f; transform: rotate(1800deg);}
+  75%  {width: 200px;height: 200px;background-color: #bbe83e; transform: rotate(2700deg);}
+  100% {width: 200px;height: 200px;background-color: #7f3ee8; transform: rotate(3600deg);}
 }
 
 .g-animate {
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   overflow: auto;
+  .margin-left {
+    margin-left: 100px;
+  }
   .an-content {
     margin: 10px 0;
   }
@@ -22,14 +25,149 @@
     background-color: $gray;
   }
   .an-test {
-    height: 600px;
+    height: 400px;
     .an-test1 {
+      margin: auto;
       width: 200px;
       height: 200px;
       background-color: #e83e8c;
     }
     .an-test1:hover {
-      animation: test1 10s infinite ease forwards;
+      // animation: test1 10s infinite ease forwards;
+      animation-name: test1;
+      animation-duration: 5s;
+      animation-timing-function: ease;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+
+      /*
+      animation-fill-mode: ;//执行完停留的状态
+      animation-delay: ;//延迟
+      animation-iteration-count: 1;//执行次数
+      animation-direction: ;//交替
+      animation-play-state: ;//停留当前状态
+      */
+    }
+    .an-test1:active {
+      animation-play-state: paused;
+    }
+  }
+  .an-tran-upper {
+    .an-box {
+      width: 100px;
+      height: 100px;
+      background-color: #ccc;
+      margin: 20px;
+      transition: 1s all ease;
+      margin-left: 100px;
+    }
+    .an-tran-many1:hover {
+      transform: scale(2,1) rotate(45deg);
+    }
+    .an-tran-many2:hover {
+      transform: rotate(45deg) scale(2,1);
+    }
+    .an-tran-3d {
+      transform: perspective(200px) rotateX(0deg);
+    }
+    .an-tran-3d:hover {
+      transform: perspective(200px) rotateX(60deg);
+    }
+  }
+
+  .an-3d-box-modal {
+    width: 100%;
+    height: 600px;
+    .an-3d-box-test {
+      width: 200px;
+      height: 200px;
+      margin: 20px auto;
+      background-color: #ccc;
+      border: 1px solid #000;
+      transform: perspective(700px) rotateX(60deg) rotateZ(40deg);
+      //去除父级限制
+      transform-style: preserve-3d;
+    }
+    .box-child {
+      width: 100%;
+      height: 100%;
+      background-color: yellow;
+      transition: 1s all ease;
+      transform: translateZ(100px);
+    }
+
+    .an-box {
+      width: 200px;
+      height: 200px;
+      margin: 20px;
+      position: relative;
+      margin: 0 auto;
+      transition: 2s all ease;
+      transform-style: preserve-3d;
+      transform: perspective(700px) rotateX(0deg) rotateY(0deg);
+      div {
+        width: 198px;
+        height: 198px;
+        border: 1px solid #000;
+        background-color: rgba(255,0,255, 0.5);
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      .front {
+        transform: translateZ(100px);
+      }
+      .back {
+        transform: translateZ(-100px);
+      }
+      .right {
+        transform: rotateY(90deg) translateZ(-100px);
+      }
+      .left {
+        transform: rotateY(-90deg) translateZ(-100px);
+      }
+      .top {
+        transform: rotateX(90deg) translateZ(100px);
+      }
+      .down {
+        transform: rotateX(-90deg) translateZ(100px);
+      }
+    }
+    .an-box:active {
+      transform: perspective(700px) rotateX(360deg) rotateY(180deg);
+    }
+  }
+
+  .an-turn {
+    width: 100%;
+    height: 500px;
+    .turn-box {
+      position: relative;
+      width: 200px;
+      height: 300px;
+      margin: 0 auto;
+      transition: 1s all ease;
+      transform-style: preserve-3d;
+      transform: perspective(700px) rotateY(0deg);
+      div {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #000;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      .front {
+        background: #bbe83e;
+        transform: translateZ(1px);
+      }
+      .back {
+        background: #9c3ee8;
+        transform: translateZ(-1px) scaleX(-1);
+      }
+    }
+    .turn-box:active {
+      transform: perspective(700px) rotateY(180deg);
     }
   }
 }

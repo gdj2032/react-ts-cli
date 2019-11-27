@@ -36,6 +36,11 @@ const menu: IRouteOption[] = [
           path: PathConfig.css3Animate,
           icon: '',
         },
+        {
+          title: '盒模型',
+          path: PathConfig.css3Bosmodal,
+          icon: '',
+        },
       ]
   },
   {

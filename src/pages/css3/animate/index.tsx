@@ -25,7 +25,7 @@ class Animate extends Component {
   }
 
   transitionItem = () => {
-    return(
+    return (
       <div>
         <h3>2.转换(transition)</h3>
         <div className="an-content">css的transition允许css的属性值在一定的时间区间内平滑地过渡。</div>
@@ -77,6 +77,66 @@ class Animate extends Component {
       </div>
     )
   }
+
+  transformUpper = () => {
+    return (
+      <div className="an-tran-upper">
+        <h3>transform 高级</h3>
+        <div>
+          <ul>
+            <li>transform: perspective, transform-style: preserve-3d;</li>
+            <li>perspective--自己 视觉效果 只给最外层加一次</li>
+            <li>preserve-3d--子元素 子元素可以脱离父级 每个需要子集出来的地方都要加</li>
+          </ul>
+        </div>
+        <div className="margin-left">
+          <h4>1. 多个变换一起使用，顺序是'反的'</h4>
+          <div>
+            <div className="an-box an-tran-many1">transform: scale(2,1) rotate(45deg);</div>
+            <div className="an-box an-tran-many2">transform: rotate(45deg) scale(2,1);</div>
+          </div>
+          <h4>2. 3D变换</h4>
+          <div className="an-box an-tran-3d"></div>
+        </div>
+      </div>
+    )
+  }
+
+  _3DBoxModal = () => {
+    return (
+      <div className="an-3d-box-modal">
+        <h3>3D盒子</h3>
+        <div>
+          <div className="an-3d-box-test">
+            <div className="box-child">测试文字</div>
+          </div>
+        </div>
+        <div>
+          <h5>立方体</h5>
+          <div className="an-box">
+            <div className="front">前</div>
+            <div className="back">后</div>
+            <div className="top">上</div>
+            <div className="down">下</div>
+            <div className="left">左</div>
+            <div className="right">右</div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  turnItem = () => {
+    return (
+      <div className="an-turn">
+        <h3>翻转</h3>
+        <div className="turn-box">
+          <div className="front">前</div>
+          <div className="back">后</div>
+        </div>
+      </div>
+    )
+  }
   render() {
     return (
       <div className="g-page g-animate">
@@ -85,6 +145,9 @@ class Animate extends Component {
         {this.transformItem()}
         {this.transitionItem()}
         {this.animationItem()}
+        {this.transformUpper()}
+        {this._3DBoxModal()}
+        {this.turnItem()}
       </div>
     )
   }
