@@ -1,4 +1,4 @@
-export const RoutePath = '/css3/animate';
+export const RoutePath = '/css/animate';
 import React, { Component } from 'react';
 import './index.scss';
 

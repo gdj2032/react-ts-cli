@@ -1,8 +1,9 @@
 // 此文件为编译时自动生成的代码，请勿更改, 改了也没有用
 const pageRoutes = {
-	css3Animate: '/css3/animate',
-	css3Bosmodal: '/css3/boxmodal',
-	css3: '/css3',
+	cssAnimate: '/css/animate',
+	cssBoxmodal: '/css/boxmodal',
+	css: '/css',
+	cssPosition: '/css/position',
 	homeDetail: '/home/detail',
 	homeExif: '/home/exif',
 	home: '/home',

@@ -1,4 +1,4 @@
-export const RoutePath = '/css3/boxmodal';
+export const RoutePath = '/css/boxmodal';
 import React, { Component } from 'react';
 import './index.scss';
 

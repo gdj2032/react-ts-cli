@@ -23,22 +23,27 @@ const menu: IRouteOption[] = [
   },
   {
       title: 'CSS3',
-      path: PathConfig.css3,
+      path: PathConfig.css,
       icon: 'succeed',
       children: [
         {
           title: 'CSS3 主页',
-          path: PathConfig.css3,
+          path: PathConfig.css,
           icon: '',
         },
         {
           title: '动画animate',
-          path: PathConfig.css3Animate,
+          path: PathConfig.cssAnimate,
           icon: '',
         },
         {
           title: '盒模型',
-          path: PathConfig.css3Bosmodal,
+          path: PathConfig.cssBoxmodal,
+          icon: '',
+        },
+        {
+          title: '定位详解',
+          path: PathConfig.cssPosition,
           icon: '',
         },
       ]

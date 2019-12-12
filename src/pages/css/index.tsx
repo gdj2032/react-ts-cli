@@ -1,4 +1,4 @@
-export const RoutePath = '/css3';
+export const RoutePath = '/css';
 import React, { Component } from 'react'
 
 export class Css3 extends Component {
