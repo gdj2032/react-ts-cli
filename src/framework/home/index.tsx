@@ -5,19 +5,23 @@ import { Table } from 'antd';
 import { shopService } from '@/service';
 import store from '@/reduxes';
 import moment from 'moment';
+import { connect } from '@/utils';
 
 interface Props {
   history?: any;
+  user?: any;
 }
 
-class Home extends React.Component<Props> {
+@connect
+class Home extends React.Component<Props, any> {
 
   state = {
     data: null,
   }
 
   componentDidMount() {
-    if(store.getState().user.isLogin) {
+    console.log(this.props);
+    if(this.props.user.isLogin) {
       this.getShopList()
     }
   }
