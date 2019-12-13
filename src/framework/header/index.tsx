@@ -19,7 +19,8 @@ class Header extends Component<Props> {
     console.log("TCL: Login -> handleSubmit -> err, data", err, data)
     if(data && data.code && data.code === 200 ) {
       store.dispatch(updateUser(userInit))
-      message.success('登出成功')
+      message.success('登出成功');
+      window.history.go()
     } else {
       message.error(err.message)
     }

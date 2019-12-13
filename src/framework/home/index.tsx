@@ -3,9 +3,9 @@ import './index.scss';
 import { HomeMenu } from '@/components/HomeMenu';
 import { Table } from 'antd';
 import { shopService } from '@/service';
-import store from '@/reduxes';
 import moment from 'moment';
 import { connect } from '@/utils';
+import { IListInfo } from '@/service/shop';
 
 interface Props {
   history?: any;
@@ -13,7 +13,7 @@ interface Props {
 }
 
 @connect
-class Home extends React.Component<Props, any> {
+class Home extends React.Component<Props> {
 
   state = {
     data: null,
@@ -21,15 +21,15 @@ class Home extends React.Component<Props, any> {
 
   componentDidMount() {
     console.log(this.props);
-    if(this.props.user.isLogin) {
-      this.getShopList()
+    if (this.props.user.isLogin) {
+      this.getShopList({ id: this.props.user.id, offset: 0, limit: 10 })
     }
   }
 
-  getShopList = async () => {
-    const [err, data] = await shopService.ShopList({id: store.getState().user.id, offset: 0, limit: 10});
+  getShopList = async (opt: IListInfo) => {
+    const [err, data] = await shopService.ShopList(opt);
     console.log("TCL: Home -> getShopList -> data", data)
-    if(!err) {
+    if (!err) {
       this.setState({ data: data })
     }
   }
@@ -61,7 +61,32 @@ class Home extends React.Component<Props, any> {
       dataIndex: 'createTime',
       render: (text) => <span>{moment(text).format('YYYY-MM-DD HH:mm:ss')}</span>
     },
+    {
+      key: 'func',
+      title: '操作',
+      dataIndex: 'func',
+      render: (text, record) => {
+        return (
+          <div className="t-func">
+            <a onClick={() => this.onDelete(record)}>删除</a>
+            <a>编辑</a>
+          </div>
+        )
+      }
+    },
   ]
+
+  onDelete = (record) => { }
+
+  onPageChange = (page, pageSize) => {
+    console.log("TCL: Home -> onPageChange -> page, pageSize", page, pageSize)
+    const opt = {
+      id: this.props.user.id,
+      offset: (page - 1) * pageSize,
+      limit: pageSize,
+    }
+    this.getShopList(opt)
+  }
 
   render() {
     const { data } = this.state;
@@ -69,15 +94,19 @@ class Home extends React.Component<Props, any> {
       <div className="g-home">
         <HomeMenu {...this.props} />
         <div className="home">Home</div>
-        <Table
-          columns={this.columns}
-          dataSource={data && data.data}
-          pagination={
-            {
-              total: (data && data.total) || 0
+        <div className="h-table">
+          <Table
+            rowKey={'id'}
+            columns={this.columns}
+            dataSource={data && data.data}
+            pagination={
+              {
+                total: (data && data.total) || 0,
+                onChange: this.onPageChange
+              }
             }
-          }
-        />
+          />
+        </div>
       </div>
     )
   }

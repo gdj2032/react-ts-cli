@@ -13,7 +13,7 @@ class ContainerPage extends React.Component<Props> {
 	render() {
 		const childRouteConfig = this.props.routeConfig.children || [];
 		return (
-			<div>
+			<div className="container">
         <Header {...this.props} />
         <Switch>
           {routeList(childRouteConfig)}
