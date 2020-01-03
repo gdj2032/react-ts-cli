@@ -1,11 +1,11 @@
 import * as React from 'react';
 import './index.scss';
 import { HomeMenu } from '@/components/HomeMenu';
-import { Table } from 'antd';
-import { shopService } from '@/service';
-import moment from 'moment';
+import { shopService, carouselService } from '@/service';
 import { connect } from '@/utils';
 import { IListInfo } from '@/service/shop';
+import { Row, Col, Carousel } from '@tmind/yuna'
+import { TYPE_LIST } from '@/constants';
 
 interface Props {
   history?: any;
@@ -17,75 +17,92 @@ class Home extends React.Component<Props> {
 
   state = {
     data: null,
+    carouselData: []
   }
 
   componentDidMount() {
     console.log(this.props);
-    if (this.props.user.isLogin) {
-      this.getShopList({ id: this.props.user.id, offset: 0, limit: 10 })
-    }
+    this.getShopList({ offset: 0, limit: 10 })
+    this.getCarouselList();
   }
 
   getShopList = async (opt: IListInfo) => {
-    const [err, data] = await shopService.ShopList(opt);
-    console.log("TCL: Home -> getShopList -> data", data)
+    const [err, data] = await shopService.getShopList(opt);
     if (!err) {
       this.setState({ data: data })
     }
   }
 
-  columns = [
-    {
-      key: 'id',
-      title: 'id',
-      dataIndex: 'id',
-    },
-    {
-      key: 'name',
-      title: 'name',
-      dataIndex: 'name',
-    },
-    {
-      key: 'num',
-      title: 'num',
-      dataIndex: 'num',
-    },
-    {
-      key: 'description',
-      title: 'description',
-      dataIndex: 'description',
-    },
-    {
-      key: 'createTime',
-      title: 'createTime',
-      dataIndex: 'createTime',
-      render: (text) => <span>{moment(text).format('YYYY-MM-DD HH:mm:ss')}</span>
-    },
-    {
-      key: 'func',
-      title: '操作',
-      dataIndex: 'func',
-      render: (text, record) => {
-        return (
-          <div className="t-func">
-            <a onClick={() => this.onDelete(record)}>删除</a>
-            <a>编辑</a>
-          </div>
-        )
-      }
-    },
-  ]
-
-  onDelete = (record) => { }
-
-  onPageChange = (page, pageSize) => {
-    console.log("TCL: Home -> onPageChange -> page, pageSize", page, pageSize)
-    const opt = {
-      id: this.props.user.id,
-      offset: (page - 1) * pageSize,
-      limit: pageSize,
+  getCarouselList = async () => {
+    const [err, data] = await carouselService.getCarouselList();
+    console.log("TCL: Home -> getCarouselList -> data", data)
+    if (!err) {
+      this.setState({ carouselData: data.data })
     }
-    this.getShopList(opt)
+  }
+
+  onLeftOver = (list, idx) => {
+    console.log("TCL: Home -> onLeftOver -> list, idx", list, idx)
+  }
+
+  onLeftLeave = (event) => {
+    console.log("TCL: Home -> onLeftLeave -> event", event)
+  }
+
+  ShopListItem = (item) => {
+    return (
+      <Col span={4} key={item.id}>
+        <div className="shop-list-item">
+          <img src={item.url} className="item-img" />
+          <div className="item-name">{item.name}</div>
+          <div className="item-desc">{item.description}</div>
+        </div>
+      </Col>
+    )
+  }
+
+  leftTypeShop = () => {
+    return (
+      <div className="shop-type-left">
+        {
+          TYPE_LIST.map((list, idx) => {
+            return (
+              <div key={idx} className="left-line" onMouseOver={() => this.onLeftOver(list, idx)} onMouseLeave={this.onLeftLeave}>
+                {
+                  list.map((item, index) => {
+                    const exit = index !== list.length - 1 ? '/' : ''
+                    return (
+                      <span key={item.name} className="left-line-item">
+                        <a className="l-item-name">{item.name}</a>
+                        <span>{exit}</span>
+                      </span>
+                    )
+                  })
+                }
+              </div>
+            )
+          })
+        }
+      </div>
+    )
+  }
+
+  centerCarousel = () => {
+    return (
+      <div className="shop-type-center">
+        <Carousel autoplay>
+          {
+            this.state.carouselData.map(item => {
+              return (
+                <div key={item.id} className="center-carouse">
+                  <img src={item.url} />
+                </div>
+              )
+            })
+          }
+        </Carousel>
+      </div>
+    )
   }
 
   render() {
@@ -93,19 +110,27 @@ class Home extends React.Component<Props> {
     return (
       <div className="g-home">
         <HomeMenu {...this.props} />
-        <div className="home">Home</div>
-        <div className="h-table">
-          <Table
-            rowKey={'id'}
-            columns={this.columns}
-            dataSource={data && data.data}
-            pagination={
+        <div className="home">
+          <div className="h-shop-type">
+            <Row>
+              <Col span={4}>
+                {this.leftTypeShop()}
+              </Col>
+              <Col span={16}>
+                {this.centerCarousel()}
+              </Col>
+              <Col span={4}>
+                <div>right</div>
+              </Col>
+            </Row>
+          </div>
+          <div className="h-shop-list">
+            <Row>
               {
-                total: (data && data.total) || 0,
-                onChange: this.onPageChange
+                data && data.data.map(item => this.ShopListItem(item))
               }
-            }
-          />
+            </Row>
+          </div>
         </div>
       </div>
     )

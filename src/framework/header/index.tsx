@@ -7,12 +7,15 @@ import { updateUser } from '@/action/setting';
 import { PathConfig } from '../routes';
 import { userService } from '@/service';
 import { message } from 'antd';
+import UpdatePwdM from './UpdatePwdM';
 
 interface Props {
   history?: any;
 }
 
 class Header extends Component<Props> {
+
+  mRefs: any;
 
   onLogout = async () => {
     const [err, data] = await userService.logout(store.getState().user.id)
@@ -38,6 +41,10 @@ class Header extends Component<Props> {
     this.props.history.push(PathConfig.home)
   }
 
+  onUpdate = () => {
+    this.mRefs.show();
+  }
+
   render() {
     const user = store.getState().user
     return (
@@ -48,6 +55,7 @@ class Header extends Component<Props> {
             <span>
               <span className="h-text h-top-username">{user.username}</span>
               <a className="h-text h-top-logout" onClick={this.onLogout}>登出</a>
+              <a className="h-text h-top-logout" onClick={this.onUpdate}>修改密码</a>
             </span>
             :
             <span>
@@ -62,6 +70,7 @@ class Header extends Component<Props> {
           </a>
           <Search placeholder="请输入搜索内容" className="h-search" onSearch={value => console.log(value)} enterButton size={'large'} />
         </div>
+        <UpdatePwdM ref={c => this.mRefs = c} />
       </div>
     )
   }

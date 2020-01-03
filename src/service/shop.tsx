@@ -1,12 +1,11 @@
 import { request } from "@/request";
 
 export interface IListInfo {
-  id: any;
   limit?: any;
   offset?: any;
 }
 
-const ShopList = async (query: IListInfo) => {
+const getShopList = async (query?: IListInfo) => {
   return request.get({
     path: '/shop/list',
     query
@@ -14,5 +13,5 @@ const ShopList = async (query: IListInfo) => {
 }
 
 export {
-  ShopList,
+  getShopList,
 }

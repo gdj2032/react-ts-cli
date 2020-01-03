@@ -1,13 +1,60 @@
 .g-home {
   width: 100%;
+  min-width: $min-width;
   .home {
-  }
-  .h-table {
-    padding: 20px;
-    width: 1000px;
-    .t-func {
-      a {
-        padding: 10px;
+    .h-shop-type {
+      width: 80%;
+      height: 480px;
+      margin: 0 auto;
+      margin-top: 10px;
+      .shop-type-left {
+        width: 100%;
+        height: 100%;
+        background-color: rgba($background-gray, 0.5);
+        .left-line {
+          width: 100%;
+          height: 30px;
+          line-height: 30px;
+          padding-left: 4px;
+          .left-line-item {
+            .l-item-name {
+              color: #000;
+            }
+            .l-item-name:hover {
+              color: $red;
+            }
+          }
+        }
+      }
+      .shop-type-center {
+        width: 100%;
+        height: 480px;
+        padding: 0 20px;
+        .center-carouse {
+          width: 100%;
+          height: 480px;
+          img {
+            width: 100%;
+            height: 480px;
+          }
+        }
+      }
+    }
+    .h-shop-list {
+      margin: 0 auto;
+      width: 80%;
+      padding-bottom: 20px;
+      .shop-list-item {
+        margin: 0 auto;
+        width: 200px;
+        height: 300px;
+        margin-top: 20px;
+        border: 1px solid #ccc;
+        .item-img {
+          width: 180px;
+          height: 180px;
+          margin: 10px;
+        }
       }
     }
   }

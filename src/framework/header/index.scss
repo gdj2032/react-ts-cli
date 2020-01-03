@@ -1,5 +1,6 @@
 .g-header {
   width: 100vw;
+  min-width: $min-width;
   height: $header-height;
   text-align: center;
   .h-top {
