@@ -1,4 +1,4 @@
-import { PathConfig } from "../framework/routes";
+import { PathConfig } from "../commentwork/routes";
 
 export interface IHomeMenu {
   title: string;
