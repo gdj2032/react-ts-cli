@@ -1,0 +1,53 @@
+.m-table-page {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  span, .p-page-prev, .p-page-next {
+    display: inline-block;
+    line-height: 23px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    text-decoration: none;
+    color: #666 !important;
+    margin-right: 5px;
+    zoom: 1;
+  }
+  .current-page, span:hover, .p-page-hover:hover {
+    color: #fff !important;
+    background-color: #C00;
+    border-color: #be0d11 #be0d11 #9a0307;
+    text-decoration: none;
+  }
+  .disable-page:hover {
+    color: #666 !important;
+    background-color: #fff;
+  }
+  input {
+    width: 23px;
+    height: 23px;
+    line-height: 23px;
+    padding: 0;
+    margin: 0 5px;
+    zoom: 1;
+    font: 12px/16px;
+    font-family: 'Simsun';
+    zoom: 1;
+    text-align: center;
+    outline:none;
+  }
+  .p-page-total {
+    margin: 0 20px;
+  }
+  .p-page-confirm {
+    margin: 0 5px;
+  }
+}
+
+
+.p-page-prev:hover, .p-page-next:hover, .disable-page:hover, span:hover, .p-page-hover:hover {
+  cursor: pointer;
+}

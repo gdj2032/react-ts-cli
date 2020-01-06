@@ -133,6 +133,9 @@ const TYPE_LIST = [
   ]
 ]
 
+const HOME_PAGE_SIZE = 12;
+
 export {
-  TYPE_LIST
+  TYPE_LIST,
+  HOME_PAGE_SIZE
 }
