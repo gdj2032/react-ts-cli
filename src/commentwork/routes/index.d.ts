@@ -1,4 +1,4 @@
-interface IRouteOption {
+export interface IRouteOption {
   component?: any;
   path?: string;
   exact?: boolean;

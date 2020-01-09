@@ -1,5 +1,7 @@
 export const RoutePath = '/test1';
 import React, { Component } from 'react'
+import './index.scss';
+import { GToolTip } from '@/components/GToolTip';
 
 export class Test1 extends Component {
 
@@ -9,8 +11,21 @@ export class Test1 extends Component {
 
   render() {
     return (
-      <div>
-        Test1222
+      <div className="g-test1">
+        <div>11111111</div>
+        <GToolTip
+          tip={
+            <div>
+              <div>测试tooltip--------------------</div>
+              <div>测试tooltip--------------------</div>
+              <div>测试tooltip--------------------</div>
+              <div>测试tooltip--------------------</div>
+            </div>
+          }
+          type="right"
+        >
+          <div>ggggggg</div>
+        </GToolTip>
       </div>
     )
   }

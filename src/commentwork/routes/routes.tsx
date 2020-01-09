@@ -4,6 +4,7 @@ import UserPagePath from '@/pages/pageRoutes'
 import autoImport from './autoImport';
 import Home from '../home';
 import Register from '../register';
+import { IRouteOption } from './index.d';
 
 export const PathConfig = {
     login: '/login',

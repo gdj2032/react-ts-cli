@@ -22,6 +22,7 @@ class Home extends React.Component<Props> {
     active: {
       visible: false,
       list: null,
+      idx: -1,
     }
   }
 
@@ -46,20 +47,23 @@ class Home extends React.Component<Props> {
     }
   }
 
-  onLeftOver = (list) => {
+  onLeftOver = (list, idx) => {
     this.setState({
       active: {
         visible: true,
         list: list,
+        idx,
       }
     })
   }
 
-  onLeftLeave = () => {
+  onLeave = () => {
+    if(!this.state.active.visible) return;
     this.setState({
       active: {
         visible: false,
         list: null,
+        idx: -1
       }
     })
   }
@@ -87,12 +91,14 @@ class Home extends React.Component<Props> {
   }
 
   leftTypeShop = () => {
+    const { active } = this.state;
+    const active_idx = active.visible && active.idx;
     return (
       <div className="shop-type-left">
         {
           TYPE_LIST.map((list, idx) => {
             return (
-              <div key={idx} className="left-line" onMouseOver={() => this.onLeftOver(list)} onMouseLeave={this.onLeftLeave}>
+              <div key={idx} className={`left-line ${active_idx === idx ? 'left-line-active' : ''}`} onMouseOver={() => this.onLeftOver(list, idx)}>
                 {
                   list.map((item, index) => {
                     const exit = index !== list.length - 1 ? '/' : ''
@@ -114,9 +120,8 @@ class Home extends React.Component<Props> {
 
   centerActive = () => {
     const { active } = this.state;
-    console.log("TCL: Home -> centerActive -> active", active)
     return (
-      <div className="shop-center-active">
+      <div className="shop-center-active" onMouseLeave={this.onLeave}>
         {
           active.list && active.list.map(i => {
             return (
@@ -155,7 +160,6 @@ class Home extends React.Component<Props> {
   }
 
   onChangePage = (params) => {
-    console.log("TCL: Home -> onChangePage -> params", params)
     this.getShopList({ offset: (params - 1) * HOME_PAGE_SIZE, limit: HOME_PAGE_SIZE })
   }
 
@@ -166,7 +170,7 @@ class Home extends React.Component<Props> {
         <HomeMenu {...this.props} />
         <div className="home">
           <div className="h-shop-type">
-            <Row>
+            <Row onMouseLeave={this.onLeave}>
               <Col span={4}>
                 {this.leftTypeShop()}
               </Col>

@@ -6,6 +6,15 @@ export interface IUpdatePwd {
 }
 
 /**
+ * 获取用户信息
+ */
+const getUserInfo = async () => {
+  return request.post({
+    path: '/userInfo',
+  })
+}
+
+/**
  * 用户登录
  */
 const login = async (data: ILoginParams) => {
@@ -53,6 +62,7 @@ const updatePwd = async (data: IUpdatePwd) => {
 
 
 export {
+  getUserInfo,
   login,
   logout,
   register,

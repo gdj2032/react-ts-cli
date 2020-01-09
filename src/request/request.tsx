@@ -17,7 +17,7 @@ function checkStatus(response: any, error: (error: any) => void = () => { }) {
                 id: 0,
                 username: null,
             }))
-            window.location.hash = '/login';
+            window.location.hash = '/';
         default:
             return (response.json()).then((json: any) => {
                 if (json.message) {

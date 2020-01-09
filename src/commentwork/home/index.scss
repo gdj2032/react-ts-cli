@@ -25,7 +25,7 @@
             }
           }
         }
-        .left-line:hover {
+        .left-line:hover, .left-line-active {
           background-color: $gray;
         }
       }
@@ -44,6 +44,20 @@
       }
       .shop-type-right {
         background-color: $gray-ccc;
+      }
+      .shop-center-active {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        background-color: #fff;
+        width: 100%;
+        height: 480px;
+        padding: 10px;
+        border: 1px solid $gray-ccc;
+        -webkit-box-shadow: $gray-ccc 0px 0px 10px;
+        -moz-box-shadow: $gray-ccc 0px 0px 10px;
+        box-shadow: $gray-ccc 0px 0px 10px;
       }
     }
     .h-shop-list {

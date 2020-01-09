@@ -5,6 +5,7 @@ import {
     Redirect,
     Route
 } from 'react-router-dom';
+import { IRouteOption } from './index.d'
 
 interface IRouteWrapProps extends ReactRouterComponentProps<any> {
     routeConfig: IRouteOption;
