@@ -6,6 +6,7 @@ export class GToolTip extends Component<IProps> {
 
   state = {
     visible: false,
+    target: false,
     gOffset: {
       left: 0,
       top: 0,
@@ -20,10 +21,6 @@ export class GToolTip extends Component<IProps> {
     },
     pos: {},
     arrowClass: '',
-  }
-
-  componentDidMount() {
-    this.getPosition();
   }
 
   offset(ele) {
@@ -45,22 +42,23 @@ export class GToolTip extends Component<IProps> {
     }
   }
 
-  getPosition = () => {
-    const gDom = document.getElementById('g-tooltip');
+  getPosition = (evt) => {
+    const gDom = evt.currentTarget;
     const offset = this.offset(gDom);
     const client = {
-      clientWidth: gDom.clientWidth,
-      clientHeight: gDom.clientHeight,
+      clientWidth: gDom.offsetWidth,
+      clientHeight: gDom.offsetHeight,
     }
-    const cDom = document.getElementById('tooltip-context');
+    const cDom = evt.currentTarget.children[1];
     const cOffset = this.offset(cDom);
     const cClient = {
-      clientWidth: cDom.clientWidth,
-      clientHeight: cDom.clientHeight,
+      clientWidth: cDom.offsetWidth,
+      clientHeight: cDom.offsetHeight,
     }
     this.setState({
       gOffset: { ...offset, ...client },
       contextOffset: { ...cOffset, ...cClient },
+      target: true,
     }, () => {
       const { type } = this.props;
       let pos = this.typeOfPosition(type);
@@ -69,7 +67,10 @@ export class GToolTip extends Component<IProps> {
     })
   }
 
-  onSetVisible = (visible: boolean) => {
+  onSetVisible = (visible: boolean, evt?: any) => {
+    if (visible && !this.state.target) {
+      this.getPosition(evt);
+    }
     this.setState({ visible });
     this.props.onVisibleChange && this.props.onVisibleChange(visible)
   }
@@ -186,20 +187,22 @@ export class GToolTip extends Component<IProps> {
       case 'bottomRight':
         const bottomRight = 'tooltip-top tooltip-top-right';
         return bottomRight;
+      default:
+        return ''
     }
   }
 
   render() {
     const { visible, pos, arrowClass } = this.state;
-    const { tip, defaultVisible, showArrow } = this.props;
+    const { tip, defaultVisible, showArrow, type } = this.props;
     const propsVisible = this.props.visible;
     const show = propsVisible || visible || defaultVisible;
     return (
-      <div id="g-tooltip" className="g-tooltip" onMouseEnter={() => this.onSetVisible(true)} onMouseLeave={() => this.onSetVisible(false)}>
+      <div id={`g-tooltip-${type}`} className={`g-tooltip-${type}`} onMouseOver={(evt) => this.onSetVisible(true, evt)} onMouseLeave={() => this.onSetVisible(false)}>
         <div className="tooltip-children">
           {this.props.children}
         </div>
-        <div id="tooltip-context" className={`tooltip-context ${show ? '' : 'tooltip-hidden'}`} style={pos}>
+        <div id={`tooltip-context-${type}`} className={`tooltip-context-${type} ${show ? '' : 'tooltip-hidden'}`} style={pos}>
           <div className={`${showArrow ? arrowClass : ''}`}>
             {tip}
           </div>
