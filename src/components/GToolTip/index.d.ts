@@ -5,7 +5,7 @@ declare const TooltipTypes: ['topLeft', 'top', 'topRight', 'leftTop', 'left', 'l
 type TooltipType = (typeof TooltipTypes)[number];
 
 interface IProps {
-  tip: ReactNode;
+  tip: () => ReactNode
   /**
    * @default bottom
    */
@@ -26,7 +26,17 @@ interface IProps {
   /**
    * 显示隐藏的回调
    */
-  onVisibleChange?: (visible: boolean) => void
+  onVisibleChange?: (visible: boolean) => void;
+  /**
+   * @default 0.1s
+   * 鼠标移入后延时多少才显示 Tooltip，单位：秒
+   */
+  mouseEnterDelay?: number;
+  /**
+   * @default 0.1s
+   * 鼠标移出后延时多少才隐藏 Tooltip，单位：秒
+   */
+  mouseLeaveDelay?: number;
 }
 
 export {

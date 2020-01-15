@@ -13,7 +13,7 @@ export class Test1 extends Component {
     return (
       <div className="g-test1">
         <GToolTip
-          tip={
+          tip={() =>
             <div>
               <div>1234567890987654321aaa1234567890987654321</div>
               <div>测试tooltip--------------------</div>
@@ -29,7 +29,7 @@ export class Test1 extends Component {
         <div>1111</div>
 
         <GToolTip
-          tip={
+          tip={() =>
             <div>
               <div>1234567890987654321aaa1234567890987654321</div>
               <div>测试tooltip--------------------</div>
@@ -45,14 +45,7 @@ export class Test1 extends Component {
         <div>2222</div>
 
         <GToolTip
-          tip={
-            <div>
-              <div>1234567890987654321aaa1234567890987654321</div>
-              <div>测试tooltip--------------------</div>
-              <div>测试tooltip--------------------</div>
-              <div>测试tooltip--------------------</div>
-            </div>
-          }
+          tip={() => 'asasdgajhsd'}
           type="left"
           showArrow
         >

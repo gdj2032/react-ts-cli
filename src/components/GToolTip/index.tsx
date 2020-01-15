@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { IProps } from './index.d';
 import './index.scss'
+import { isFunction, isString } from 'util';
 
 export class GToolTip extends Component<IProps> {
 
@@ -194,17 +195,17 @@ export class GToolTip extends Component<IProps> {
 
   render() {
     const { visible, pos, arrowClass } = this.state;
-    const { tip, defaultVisible, showArrow, type } = this.props;
+    const { tip, defaultVisible, showArrow } = this.props;
     const propsVisible = this.props.visible;
     const show = propsVisible || visible || defaultVisible;
     return (
-      <div id={`g-tooltip-${type}`} className={`g-tooltip-${type}`} onMouseOver={(evt) => this.onSetVisible(true, evt)} onMouseLeave={() => this.onSetVisible(false)}>
+      <div id="g-tooltip" className="g-tooltip" onMouseEnter={(evt) => this.onSetVisible(true, evt)} onMouseLeave={() => this.onSetVisible(false)}>
         <div className="tooltip-children">
           {this.props.children}
         </div>
-        <div id={`tooltip-context-${type}`} className={`tooltip-context-${type} ${show ? '' : 'tooltip-hidden'}`} style={pos}>
+        <div id="tooltip-context" className={`tooltip-context ${show ? '' : 'tooltip-hidden'}`} style={pos}>
           <div className={`${showArrow ? arrowClass : ''}`}>
-            {tip}
+            { isFunction(tip) ? tip() :tip }
           </div>
         </div>
       </div>
