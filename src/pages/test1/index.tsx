@@ -12,19 +12,19 @@ export class Test1 extends Component {
   render() {
     return (
       <div className="g-test1">
-        <div>11111111</div>
         <GToolTip
           tip={
             <div>
-              <div>测试tooltip--------------------</div>
+              <div>1234567890987654321aaa1234567890987654321</div>
               <div>测试tooltip--------------------</div>
               <div>测试tooltip--------------------</div>
               <div>测试tooltip--------------------</div>
             </div>
           }
           type="right"
+          showArrow
         >
-          <div>ggggggg</div>
+          <div style={{height: '20px', lineHeight: '20px',}}>rightrightrightright</div>
         </GToolTip>
       </div>
     )

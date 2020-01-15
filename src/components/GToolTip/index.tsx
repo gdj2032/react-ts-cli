@@ -17,8 +17,15 @@ export class GToolTip extends Component<IProps> {
       top: 0,
       clientWidth: 0,
       clientHeight: 0,
-    }
+    },
+    pos: {},
+    arrowClass: '',
   }
+
+  componentDidMount() {
+    this.getPosition();
+  }
+
   offset(ele) {
     var top = ele.offsetTop;
     var left = ele.offsetLeft;
@@ -38,7 +45,7 @@ export class GToolTip extends Component<IProps> {
     }
   }
 
-  onMouseOver = (evt) => {
+  getPosition = () => {
     const gDom = document.getElementById('g-tooltip');
     const offset = this.offset(gDom);
     const client = {
@@ -52,89 +59,150 @@ export class GToolTip extends Component<IProps> {
       clientHeight: cDom.clientHeight,
     }
     this.setState({
-      visible: true,
       gOffset: { ...offset, ...client },
       contextOffset: { ...cOffset, ...cClient },
+    }, () => {
+      const { type } = this.props;
+      let pos = this.typeOfPosition(type);
+      let arrowClass = this.typeOfArrow(type);
+      this.setState({ pos, arrowClass })
     })
   }
 
-  onMouseLeave = () => {
-    this.setState({
-      visible: false,
-      gOffset: {
-        left: 0,
-        top: 0,
-        clientWidth: 0,
-        clientHeight: 0,
-      },
-      contextOffset: {
-        left: 0,
-        top: 0,
-        clientWidth: 0,
-        clientHeight: 0,
-      }
-    })
+  onSetVisible = (visible: boolean) => {
+    this.setState({ visible });
+    this.props.onVisibleChange && this.props.onVisibleChange(visible)
   }
 
   typeOfPosition = (type) => {
     const { gOffset, contextOffset } = this.state;
     switch (type) {
-      case 'leftTop':
-        const leftTop = {
+      case 'topLeft':
+        const topLeft = {
           top: `${contextOffset.top - (gOffset.clientHeight + contextOffset.clientHeight)}px`,
-          left: `${contextOffset.left - contextOffset.clientWidth}px`,
+          left: `${contextOffset.left}px`,
         }
-        return leftTop;
+        return topLeft;
       case 'top':
         const top = {
           top: `${contextOffset.top - (gOffset.clientHeight + contextOffset.clientHeight)}px`,
+          left: `${contextOffset.left - Math.abs(gOffset.clientWidth - contextOffset.clientWidth) / 2}px`,
         }
         return top;
-      case 'rightTop':
-        const rightTop = {
+      case 'topRight':
+        const topRight = {
           top: `${contextOffset.top - (gOffset.clientHeight + contextOffset.clientHeight)}px`,
-          left: `${contextOffset.left + gOffset.clientWidth}px`,
+          left: `${contextOffset.left - contextOffset.clientWidth + gOffset.clientWidth}px`,
         };
-        return rightTop;
+        return topRight;
+      case 'leftTop':
+        const leftTop = {
+          top: `${contextOffset.top - gOffset.clientHeight}px`,
+          left: `${contextOffset.left - contextOffset.clientWidth}px`,
+        }
+        return leftTop;
       case 'left':
         const left = {
-          top: `${contextOffset.top - (gOffset.clientHeight + contextOffset.clientHeight) / 2 }px`,
+          top: `${contextOffset.top - (gOffset.clientHeight + contextOffset.clientHeight) / 2}px`,
           left: `${contextOffset.left - contextOffset.clientWidth}px`,
         }
         return left;
-      case 'right':
-        const right = {
-          top: `${contextOffset.top - (gOffset.clientHeight + contextOffset.clientHeight) / 2 }px`,
-          left: `${contextOffset.left + gOffset.clientWidth}px`,
-        }
-        return right;
       case 'leftBottom':
         const leftBottom = {
+          top: `${contextOffset.top - contextOffset.clientHeight}px`,
           left: `${contextOffset.left - contextOffset.clientWidth}px`,
         }
         return leftBottom;
+      case 'rightTop':
+        const rightTop = {
+          top: `${contextOffset.top - gOffset.clientHeight}px`,
+          left: `${contextOffset.left + gOffset.clientWidth}px`,
+        }
+        return rightTop;
+      case 'right':
+        const right = {
+          top: `${contextOffset.top - (gOffset.clientHeight + contextOffset.clientHeight) / 2}px`,
+          left: `${contextOffset.left + gOffset.clientWidth}px`,
+        }
+        return right;
       case 'rightBottom':
         const rightBottom = {
+          top: `${contextOffset.top - contextOffset.clientHeight}px`,
           left: `${contextOffset.left + gOffset.clientWidth}px`,
         }
         return rightBottom;
-      default:
-        return {}
+      case 'bottomLeft':
+        const bottomLeft = {
+          left: `${contextOffset.left - contextOffset.clientWidth + gOffset.clientWidth}px`,
+        }
+        return bottomLeft;
+      case 'bottomRight':
+        const bottomRight = {
+          left: `${contextOffset.left}px`,
+        }
+        return bottomRight;
+      default: // bottom
+        return {
+          left: `${contextOffset.left - Math.abs(gOffset.clientWidth - contextOffset.clientWidth) / 2}px`,
+        }
+    }
+  }
+
+  typeOfArrow = (type) => {
+    switch (type) {
+      case 'topLeft':
+        const topLeft = 'tooltip-bottom tooltip-bottom-left';
+        return topLeft;
+      case 'top':
+        const top = 'tooltip-bottom';
+        return top;
+      case 'topRight':
+        const topRight = 'tooltip-bottom tooltip-bottom-right';
+        return topRight;
+      case 'leftTop':
+        const leftTop = 'tooltip-right tooltip-right-top'
+        return leftTop;
+      case 'left':
+        const left = 'tooltip-right'
+        return left;
+      case 'leftBottom':
+        const leftBottom = 'tooltip-right tooltip-right-bottom'
+        return leftBottom;
+      case 'rightTop':
+        const rightTop = 'tooltip-left tooltip-left-top'
+        return rightTop;
+      case 'right':
+        const right = 'tooltip-left'
+        return right;
+      case 'rightBottom':
+        const rightBottom = 'tooltip-left tooltip-left-bottom'
+        return rightBottom;
+      case 'bottomLeft':
+        const bottomLeft = 'tooltip-top tooltip-top-left';
+        return bottomLeft;
+      case 'bottom':
+        const bottom = 'tooltip-top';
+        return bottom;
+      case 'bottomRight':
+        const bottomRight = 'tooltip-top tooltip-top-right';
+        return bottomRight;
     }
   }
 
   render() {
-    const { visible } = this.state;
-    const { tip, type } = this.props;
-    let pos = {};
-    if (visible) {
-      pos = this.typeOfPosition(type)
-    }
+    const { visible, pos, arrowClass } = this.state;
+    const { tip, defaultVisible, showArrow } = this.props;
+    const propsVisible = this.props.visible;
+    const show = propsVisible || visible || defaultVisible;
     return (
-      <div id="g-tooltip" className="g-tooltip" onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
-        {this.props.children}
-        <div id="tooltip-context" className={`tooltip-context ${visible ? '' : 'tooltip-hidden'}`} style={pos}>
-          {tip}
+      <div id="g-tooltip" className="g-tooltip" onMouseEnter={() => this.onSetVisible(true)} onMouseLeave={() => this.onSetVisible(false)}>
+        <div className="tooltip-children">
+          {this.props.children}
+        </div>
+        <div id="tooltip-context" className={`tooltip-context ${show ? '' : 'tooltip-hidden'}`} style={pos}>
+          <div className={`${showArrow ? arrowClass : ''}`}>
+            {tip}
+          </div>
         </div>
       </div>
     )
