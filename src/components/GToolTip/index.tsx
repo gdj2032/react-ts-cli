@@ -72,8 +72,12 @@ export class GToolTip extends Component<IProps> {
     if (visible && !this.state.target) {
       this.getPosition(evt);
     }
-    this.setState({ visible });
-    this.props.onVisibleChange && this.props.onVisibleChange(visible)
+    const { mouseEnterDelay, mouseLeaveDelay } = this.props;
+    const timer = visible ? mouseEnterDelay * 1000 | 100 : mouseLeaveDelay * 1000 | 100;
+    setTimeout(() => {
+      this.setState({ visible });
+      this.props.onVisibleChange && this.props.onVisibleChange(visible)
+    }, timer)
   }
 
   typeOfPosition = (type) => {

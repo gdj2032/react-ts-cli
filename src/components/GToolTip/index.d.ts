@@ -5,7 +5,7 @@ declare const TooltipTypes: ['topLeft', 'top', 'topRight', 'leftTop', 'left', 'l
 type TooltipType = (typeof TooltipTypes)[number];
 
 interface IProps {
-  tip: () => ReactNode
+  tip: ReactNode
   /**
    * @default bottom
    */

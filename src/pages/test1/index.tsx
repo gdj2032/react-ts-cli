@@ -45,7 +45,7 @@ export class Test1 extends Component {
         <div>2222</div>
 
         <GToolTip
-          tip={() => 'asasdgajhsd'}
+          tip={'asasdgajhsd'}
           type="left"
           showArrow
         >
