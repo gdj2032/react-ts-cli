@@ -19,6 +19,11 @@ const menu: IRouteOption[] = [
           path: PathConfig.homeExif,
           icon: '',
         },
+        {
+          title: 'ToolTip',
+          path: PathConfig.homeTooltip,
+          icon: '',
+        },
       ]
   },
   {
