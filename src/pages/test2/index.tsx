@@ -1,4 +1,4 @@
-export const RoutePath = '/test2';
+export const RoutePath = '/home/test2';
 import React, { Component } from 'react'
 
 export class Test2 extends Component {

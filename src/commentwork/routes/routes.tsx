@@ -9,7 +9,7 @@ import { IRouteOption } from './index.d';
 export const PathConfig = {
     login: '/login',
     register: '/register',
-    home: '/',
+    home: '/home',
     ...UserPagePath,
 };
 
@@ -43,7 +43,12 @@ export const pageRoute: IRouteOption[] = [
             ...autoImport(),
             {
                 path: '/',
-                component: Home, // 默认到home页
+                component: Home,
+                exact: true,
+            },
+            {
+                path: '/home',
+                component: Home,
                 exact: true,
             },
         ],

@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { IRouteOption } from './index.d';
 
 // 自动引入 带有 export PageRoute = xxx;的页面
 interface IPageInfo {

@@ -1,4 +1,4 @@
-export const RoutePath = '/test1';
+export const RoutePath = '/home/test1';
 import React, { Component } from 'react'
 import './index.scss';
 import { GToolTip } from '@/components/GToolTip';
