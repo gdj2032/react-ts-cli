@@ -5,6 +5,8 @@ import { isFunction } from 'util';
 
 export class GToolTip extends Component<IProps> {
 
+  tipRefs: any;
+
   state = {
     visible: false,
     target: false,
@@ -25,7 +27,9 @@ export class GToolTip extends Component<IProps> {
   }
 
   componentDidMount() {
-    console.log(document)
+    if (!this.state.target) {
+      this.getPosition(this.tipRefs);
+    }
   }
 
   offset(ele) {
@@ -48,13 +52,13 @@ export class GToolTip extends Component<IProps> {
   }
 
   getPosition = (evt) => {
-    const gDom = evt.currentTarget;
+    const gDom = evt;
     const offset = this.offset(gDom);
     const client = {
       clientWidth: gDom.offsetWidth,
       clientHeight: gDom.offsetHeight,
     }
-    const cDom = evt.currentTarget.children[1];
+    const cDom = evt.children[1];
     const cOffset = this.offset(cDom);
     const cClient = {
       clientWidth: cDom.offsetWidth,
@@ -73,9 +77,6 @@ export class GToolTip extends Component<IProps> {
   }
 
   onSetVisible = async (visible: boolean, evt?: any) => {
-    if (visible && !this.state.target) {
-      this.getPosition(evt);
-    }
     const { mouseEnterDelay, mouseLeaveDelay } = this.props;
     const timer = visible ? mouseEnterDelay * 1000 | 100 : mouseLeaveDelay * 1000 | 100;
     setTimeout(() => {
@@ -207,7 +208,7 @@ export class GToolTip extends Component<IProps> {
     const propsVisible = this.props.visible;
     const show = propsVisible || visible || defaultVisible;
     return (
-      <div id="g-tooltip" className="g-tooltip" onMouseEnter={(evt) => this.onSetVisible(true, evt)} onMouseLeave={() => this.onSetVisible(false)}>
+      <div id="g-tooltip" className="g-tooltip" onMouseEnter={(evt) => this.onSetVisible(true, evt)} onMouseLeave={() => this.onSetVisible(false)} ref={c => this.tipRefs = c}>
         <div className="tooltip-children">
           {this.props.children}
         </div>

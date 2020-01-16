@@ -21,6 +21,15 @@ class ToolTip extends Component<IProps, IState> {
           tip={() => <div>测试文字是his尖峰时刻过节费时间发货时</div>}
           showArrow
           type="right"
+          defaultVisible
+        >
+          要显示tooltip鼠标就点过来
+        </GToolTip>
+        <br/>
+        <GToolTip
+          tip={() => <div>测试文字是his尖峰时刻过节费时间发货时</div>}
+          showArrow
+          type="left"
         >
           要显示tooltip鼠标就点过来
         </GToolTip>
