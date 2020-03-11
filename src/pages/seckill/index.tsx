@@ -1,17 +1,22 @@
-export const RoutePath = '/home/test1';
+export const RoutePath = '/seckill';
 import React, { Component } from 'react'
-import './index.scss';
+import './index.scss'
 import { GToolTip } from '@/components/GToolTip';
 
-export class Test1 extends Component {
+interface IProps {
+}
 
-  componentDidMount() {
-    console.log(this.props)
-  }
+interface IState {
+}
+
+class Seckill extends Component<IProps, IState> {
+
+  state: IState = {}
 
   render() {
     return (
-      <div className="g-test1">
+      <div className="g-seckill">
+        <h1>秒杀</h1>
         <GToolTip
           tip={() =>
             <div>
@@ -56,4 +61,4 @@ export class Test1 extends Component {
   }
 }
 
-export default Test1
+export default Seckill;

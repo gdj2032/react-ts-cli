@@ -7,6 +7,7 @@ import { IListInfo } from '@/service/shop';
 import { Row, Col, Carousel } from '@tmind/yuna'
 import { TYPE_LIST, HOME_PAGE_SIZE } from '@/constants';
 import Paginations from '@/components/Paginations';
+import { PathConfig } from '../routes';
 
 interface Props {
   history?: any;
@@ -68,10 +69,14 @@ class Home extends React.Component<Props> {
     })
   }
 
+  onGoods = (item) => {
+    this.props.history.push(PathConfig.goods(item.id))
+  }
+
   ShopListItem = (item) => {
     return (
       <Col span={6} key={item.id}>
-        <div className="shop-list-item">
+        <div className="shop-list-item" onClick={() => this.onGoods(item)}>
           <img src={item.url} className="item-img" />
           <div className="item-name">
             <p className="i-name">{item.name}</p>

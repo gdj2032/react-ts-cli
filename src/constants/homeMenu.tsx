@@ -10,13 +10,18 @@ const HomeMenuConfig = () => {
   if (!PathConfig) return [];
   const menu: IHomeMenu[] = [
     {
-      title: '测试1',
-      path: PathConfig.test1,
+      title: '秒杀',
+      path: PathConfig.seckill,
       icon: '',
     },
     {
-      title: '测试2',
-      path: PathConfig.test2,
+      title: '优惠券',
+      path: PathConfig.coupon,
+      icon: '',
+    },
+    {
+      title: 'Plus会员',
+      path: PathConfig.plusVip,
       icon: '',
     },
   ];

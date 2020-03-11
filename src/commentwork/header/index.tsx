@@ -45,6 +45,8 @@ class Header extends Component<Props> {
     this.mRefs.show();
   }
 
+  onUserInfo = () => {}
+
   render() {
     const user = store.getState().user
     return (
@@ -56,6 +58,7 @@ class Header extends Component<Props> {
               <span className="h-text h-top-username">{user.username}</span>
               <a className="h-text h-top-logout" onClick={this.onLogout}>登出</a>
               <a className="h-text h-top-logout" onClick={this.onUpdate}>修改密码</a>
+              <a className="h-text h-top-userInfo" onClick={this.onUserInfo}>个人信息</a>
             </span>
             :
             <span>
