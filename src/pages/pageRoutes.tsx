@@ -7,6 +7,7 @@ const pageRoutes = {
 	homeDetail: '/home/detail',
 	homeExif: '/home/exif',
 	home: '/home',
+	homeRegex: '/home/regex',
 	homeTooltip: '/home/tooltip',
 	reactnative: '/reactnative',
 };

@@ -24,6 +24,11 @@ const menu: IRouteOption[] = [
           path: PathConfig.homeTooltip,
           icon: '',
         },
+        {
+          title: '正则表达式',
+          path: PathConfig.homeRegex,
+          icon: '',
+        },
       ]
   },
   {
